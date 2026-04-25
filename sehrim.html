@@ -5,11 +5,71 @@
     <title>Şehrim</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #f5f7fb;
+        }
+
+        .navbar-nav .nav-link {
+            transition: 0.2s ease;
+            padding: 8px 14px;
+            border-radius: 8px;
+            display: inline-block;
+            min-width: 95px;
+            text-align: center;
+            border: 1px solid transparent;
+        }
+
+        .navbar-nav .nav-link:hover {
+            background-color: rgba(255,255,255,0.1);
+            color: #0d6efd !important;
+            transform: none; 
+        }
+
+        .nav-link.active {
+            color: #0d6efd !important;
+            font-weight: 600;
+        }
+
+        /* BOX */
+        .box {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            margin-top: 40px;
+        }
+
+        h1, h3 {
+            color: #212529;
+            font-weight: 600;
+        }
+
+        /* SLIDER */
+        .carousel img {
+            border-radius: 15px;
+            height: 400px;
+            object-fit: cover;
+        }
+
+        /* INFO CARD */
+        .info-card {
+            background: #fff;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-top: 20px;
+        }
+    </style>
 </head>
+
 <body>
 
+<!-- NAVBAR -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
+
     <a class="navbar-brand" href="index.html">Web Projem</a>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
@@ -17,27 +77,96 @@
     </button>
 
     <div class="collapse navbar-collapse" id="menu">
+
       <ul class="navbar-nav ms-auto">
 
         <li class="nav-item"><a class="nav-link" href="index.html">Anasayfa</a></li>
         <li class="nav-item"><a class="nav-link" href="hakkinda.html">Hakkında</a></li>
         <li class="nav-item"><a class="nav-link" href="cv.html">CV</a></li>
-        <li class="nav-item"><a class="nav-link" href="sehrim.html">Şehrim</a></li>
+        <li class="nav-item"><a class="nav-link active" href="sehrim.html">Şehrim</a></li>
         <li class="nav-item"><a class="nav-link" href="mirasimiz.html">Mirasımız</a></li>
         <li class="nav-item"><a class="nav-link" href="ilgi.html">İlgi Alanlarım</a></li>
         <li class="nav-item"><a class="nav-link" href="iletisim.html">İletişim</a></li>
         <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
 
       </ul>
+
     </div>
   </div>
 </nav>
 
-<div class="container mt-4">
-  <h1>Şehrim</h1>
-  <p>Sakarya hakkında bilgiler burada olacak.</p>
+<!-- CONTENT -->
+<div class="container">
+
+    <div class="box">
+
+        <h1>Şehrim: Sakarya</h1>
+
+        <p>
+            Sakarya, Marmara Bölgesi'nde yer alan doğal güzellikleri ve gelişmiş yapısıyla bilinen bir şehirdir.
+        </p>
+
+        <!-- INFO -->
+        <div class="info-card">
+            <h3>Şehir Bilgileri</h3>
+            <ul>
+                <li><strong>Nüfus:</strong> ~1.100.000</li>
+                <li><strong>Bölge:</strong> Marmara</li>
+                <li><strong>Özellik:</strong> Doğa, yaylalar, Sapanca Gölü</li>
+            </ul>
+        </div>
+
+        <!-- SLIDER -->
+        <h3 class="mt-4">Gezilecek Yerler</h3>
+
+        <div id="sehirSlider" class="carousel slide mt-3" data-bs-ride="carousel">
+
+            <div class="carousel-inner">
+
+                <div class="carousel-item active">
+                    <img src="images/sapanca.jpg" class="d-block w-100" alt="Sapanca Gölü">
+                </div>
+
+                <div class="carousel-item">
+                    <img src="images/acarlar.jpeg" class="d-block w-100" alt="Acarlar Longozu">
+                </div>
+
+                <div class="carousel-item">
+                    <img src="images/karasu.jpeg" class="d-block w-100" alt="Karasu Sahili">
+                </div>
+
+                <div class="carousel-item">
+                    <img src="images/masukiye.jpg" class="d-block w-100" alt="Maşukiye">
+                </div>
+
+            </div>
+
+            <button class="carousel-control-prev" type="button" data-bs-target="#sehirSlider" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </button>
+
+            <button class="carousel-control-next" type="button" data-bs-target="#sehirSlider" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </button>
+
+        </div>
+
+        <!-- PLACES -->
+        <div class="info-card mt-4">
+            <h3>Gezilecek Yerler</h3>
+            <ul>
+                <li>Sapanca Gölü</li>
+                <li>Acarlar Longozu</li>
+                <li>Maşukiye</li>
+                <li>Karasu Sahili</li>
+            </ul>
+        </div>
+
+    </div>
+
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>
