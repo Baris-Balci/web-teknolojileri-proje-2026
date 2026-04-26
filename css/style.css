@@ -1,0 +1,118 @@
+/* GENEL */
+body {
+    background-color: #f5f7fb;
+}
+
+/*  NAVBAR (TÜM SİTE STANDARDI) */
+.navbar-nav .nav-link {
+    transition: 0.2s ease;
+    padding: 8px 14px;
+    border-radius: 8px;
+    display: inline-block;
+    min-width: 95px;
+    text-align: center;
+    border: 1px solid transparent;
+}
+
+.navbar-nav .nav-link:hover {
+    background-color: rgba(255,255,255,0.1);
+    color: #0d6efd !important;
+    transform: none;
+}
+
+.nav-link.active {
+    color: #0d6efd !important;
+    font-weight: 600;
+}
+
+/* GENEL BOX */
+.box, .cv-box, .login-box {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    margin-top: 40px;
+}
+
+/* BAŞLIKLAR */
+h1, h3 {
+    color: #212529;
+    font-weight: 600;
+}
+
+/* LIST */
+ul li {
+    padding: 4px 0;
+}
+
+/* BADGE */
+.badge-custom {
+    background: #0d6efd;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 10px;
+    font-size: 12px;
+}
+
+/* RESİM */
+img {
+    border-radius: 10px;
+}
+
+/* VIDEO BUTTON */
+.video-link {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 15px;
+    background-color: #0d6efd;
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+}
+
+.video-link:hover {
+    background-color: #0b5ed7;
+}
+
+/* CARD */
+.card-custom {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: 0.3s;
+    height: 100%;
+}
+
+.card-custom:hover {
+    transform: translateY(-5px);
+}
+
+.card-custom img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+/* INFO CARD */
+.info-card {
+    background: #fff;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    margin-top: 20px;
+}
+
+/* SLIDER */
+.carousel img {
+    border-radius: 15px;
+    height: 400px;
+    object-fit: cover;
+}
+
+/* LOGIN */
+.login-box {
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
