@@ -40,71 +40,108 @@
 </nav>
 
 <!-- CONTENT -->
-<main class="container">
+<main class="container-fluid px-5">
 
-    <section class="box">
+    <div class="row mt-4">
 
-        <!-- BAŞLIK -->
-        <header>
-            <h1>Sakaryaspor</h1>
-        </header>
+        <!-- SOL TARAF -->
+        <div class="col-lg-8">
 
-        <!-- TANITIM -->
-        <article>
-            <p>
-                Sakaryaspor, Sakarya’nın en önemli spor kulübüdür ve şehrin kültürel ve sportif kimliğinin bir parçasıdır. 
-                Taraftar kültürü ve yetiştirdiği futbolcular ile Türk futbolunda önemli bir yere sahiptir.
-            </p>
-        </article>
+            <section class="box">
 
-        <!-- GÖRSEL -->
-        <section>
-            <img src="images/sakaryaspor.jpg" class="img-fluid mt-3 team-img" alt="Sakaryaspor">
-        </section>
+                <header>
+                    <h1>Sakaryaspor</h1>
+                </header>
 
-        <hr>
+                <article>
+                    <p>
+                        Sakaryaspor, Sakarya’nın en önemli spor kulübüdür ve şehrin kültürel ve sportif kimliğinin bir parçasıdır.
+                        Taraftar kültürü ve geçmiş başarıları ile Türkiye futbolunda önemli bir yere sahiptir.
+                    </p>
+                </article>
 
-        <!-- KULÜP BİLGİLERİ -->
-        <section class="info-card">
-            <h3>Kulüp Bilgileri</h3>
-            <ul>
-                <li><strong>Kuruluş:</strong> 1965</li>
-                <li><strong>Şehir:</strong> Sakarya</li>
-                <li><strong>Renkler:</strong> Yeşil - Siyah</li>
-                <li><strong>Stadyum:</strong> Sakarya Atatürk Stadyumu</li>
-            </ul>
-        </section>
+                <!-- RESİM -->
+                <img src="images/sakaryaspor.jpg" class="img-fluid rounded mt-3" alt="Sakaryaspor">
 
-        <hr>
+                <!-- KUTULAR -->
+                <div class="row mt-4">
 
-        <!-- TARİHÇE -->
-        <section class="info-card">
-            <h3>Tarihçe</h3>
-            <article>
-                <p>
-                    Sakaryaspor, Türk futbolunda altyapıdan yetiştirdiği oyuncular ile tanınır. 
-                    Birçok yetenekli futbolcu Türk futboluna kazandırılmıştır. 
-                    Bu yüzden “futbolcu fabrikası” olarak da bilinir.
-                </p>
-            </article>
-        </section>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>🏟 Kulüp Bilgileri</h5>
+                            <ul>
+                                <li><strong>Kuruluş:</strong> 1965</li>
+                                <li><strong>Şehir:</strong> Sakarya</li>
+                                <li><strong>Renkler:</strong> Yeşil - Siyah</li>
+                                <li><strong>Stadyum:</strong> Sakarya Atatürk</li>
+                            </ul>
+                        </div>
+                    </div>
 
-        <hr>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>📜 Tarihçe</h5>
+                            <p>
+                                Sakaryaspor Türk futbolunda altyapı başarısıyla bilinir.
+                                Birçok yetenekli futbolcu yetiştirmiştir.
+                            </p>
+                        </div>
+                    </div>
 
-        <!-- TARAFTAR -->
-        <section class="info-card">
-            <h3>Taraftar Kültürü</h3>
-            <article>
-                <p>
-                    “Tatangalar” olarak bilinen taraftar grubu, Türkiye’nin en ateşli ve bağlı taraftar topluluklarından biridir. 
-                    Maçlarda oluşturdukları atmosfer oldukça etkileyicidir.
-                </p>
-            </article>
-        </section>
+                </div>
 
-    </section>
+                <div class="info-card mt-3">
+                    <h5>🔥 Taraftar Kültürü</h5>
+                    <p>
+                        “Tatangalar” Türkiye’nin en tutkulu taraftar gruplarından biridir.
+                        Maç atmosferi oldukça güçlüdür.
+                    </p>
+                </div>
+
+            </section>
+
+        </div>
+
+        <!-- SAĞ PANEL -->
+        <div class="col-lg-4">
+
+            <aside class="sidebar-card">
+
+                <h5>📌 Özet</h5>
+                <p>Sakarya’nın futbol kültürünü temsil eder.</p>
+
+                <hr>
+
+                <h5>⭐ Öne Çıkan</h5>
+                <ul>
+                    <li>Altyapı başarısı</li>
+                    <li>Tatangalar taraftarı</li>
+                    <li>Köklü kulüp</li>
+                </ul>
+
+                <hr>
+
+                <h5>🏆 Kimlik</h5>
+                <p>Yeşil - Siyah ruh</p>
+
+            </aside>
+
+        </div>
+
+    </div>
 
 </main>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="container">
+        <p>© 2026 Barış Balcı | Tüm Hakları Saklıdır</p>
+        <p>
+            <a href="iletisim.html">İletişim</a> |
+            <a href="cv.html">CV</a>
+        </p>
+    </div>
+</footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 

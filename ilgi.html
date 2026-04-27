@@ -40,45 +40,89 @@
 </nav>
 
 <!-- CONTENT -->
-<div class="container">
+<main class="container-fluid px-5">
 
-    <div class="box">
+    <div class="row mt-4">
 
-        <h1>Dizi Listesi</h1>
-        <p>TVMaze API üzerinden çekilen dizi verileri gösterilmektedir.</p>
+        <!-- SOL TARAF -->
+        <div class="col-lg-8">
 
-        <div class="row" id="showList"></div>
+            <section class="box">
+
+                <header>
+                    <h1>🎬 İlgi Alanlarım</h1>
+                    <p>TVMaze API üzerinden çekilen dizi verileri</p>
+                </header>
+
+                <!-- GRID -->
+                <div class="row" id="showList"></div>
+
+            </section>
+
+        </div>
+
+        <!-- SAĞ PANEL -->
+        <div class="col-lg-4">
+
+            <aside class="sidebar-card">
+
+                <h5>📌 Hakkında</h5>
+                <p>Film ve dizilere ilgim vardır. API ile canlı veri çekiyorum.</p>
+
+                <hr>
+
+                <h5>🔥 İlgi Alanları</h5>
+                <ul>
+                    <li>Diziler</li>
+                    <li>Filmler</li>
+                    <li>Oyunlar</li>
+                </ul>
+
+                <hr>
+
+                <h5>💡 Not</h5>
+                <p>Veriler canlı API üzerinden gelmektedir.</p>
+
+            </aside>
+
+        </div>
 
     </div>
 
-</div>
+</main>
 
+<!-- SCRIPT -->
 <script>
-    const apiURL = "https://api.tvmaze.com/shows";
+const apiURL = "https://api.tvmaze.com/shows";
 
-    fetch(apiURL)
-        .then(res => res.json())
-        .then(data => {
+fetch(apiURL)
+.then(res => res.json())
+.then(data => {
 
-            let output = "";
+    let output = "";
 
-            data.slice(0, 6).forEach(show => {
+    data.slice(0, 6).forEach(show => {
 
-                output += `
-                <div class="col-md-4 mb-3">
-                    <div class="card-custom">
-                        <img src="${show.image ? show.image.medium : ''}" alt="${show.name}">
-                        <div class="card-body">
-                            <h5>${show.name}</h5>
-                            <p>${show.genres.join(", ")}</p>
-                        </div>
-                    </div>
+        output += `
+        <div class="col-md-6 mb-4">
+
+            <div class="card-custom">
+
+                <img src="${show.image ? show.image.medium : ''}" alt="${show.name}">
+
+                <div class="card-body">
+                    <h5>${show.name}</h5>
+                    <p>${show.genres.join(", ")}</p>
                 </div>
-                `;
-            });
 
-            document.getElementById("showList").innerHTML = output;
-        });
+            </div>
+
+        </div>
+        `;
+    });
+
+    document.getElementById("showList").innerHTML = output;
+});
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
