@@ -46,28 +46,24 @@
 
     <form action="iletisim.php" method="POST" id="contactForm">
 
-        <!-- TEXT -->
         <div class="mb-3">
             <label>Ad Soyad</label>
-            <input type="text" class="form-control" id="name" name="name">
+            <input type="text" class="form-control" id="name" name="name" oninput="resetValidation()">
         </div>
 
-        <!-- EMAIL -->
         <div class="mb-3">
             <label>Email</label>
-            <input type="text" class="form-control" id="email" name="email">
+            <input type="text" class="form-control" id="email" name="email" oninput="resetValidation()">
         </div>
 
-        <!-- TELEFON -->
         <div class="mb-3">
             <label>Telefon</label>
-            <input type="text" class="form-control" id="phone" name="phone">
+            <input type="text" class="form-control" id="phone" name="phone" oninput="resetValidation()">
         </div>
 
-        <!-- SELECT -->
         <div class="mb-3">
             <label>Konu</label>
-            <select class="form-control" name="subject" id="subject">
+            <select class="form-control" name="subject" id="subject" onchange="resetValidation()">
                 <option value="">Seçiniz</option>
                 <option>Genel</option>
                 <option>Destek</option>
@@ -75,38 +71,31 @@
             </select>
         </div>
 
-        <!-- RADIO -->
         <div class="mb-3">
             <label>İletişim Tercihi</label><br>
-
-            <input type="radio" name="contactType" value="email"> Email
-            <input type="radio" name="contactType" value="telefon"> Telefon
+            <input type="radio" name="contactType" value="email" onchange="resetValidation()"> Email
+            <input type="radio" name="contactType" value="telefon" onchange="resetValidation()"> Telefon
         </div>
 
-        <!-- CHECKBOX -->
         <div class="mb-3">
-            <input type="checkbox" id="agree">
+            <input type="checkbox" id="agree" name="agree" onchange="resetValidation()">
             <label>KVKK kabul ediyorum</label>
         </div>
 
-        <!-- MESAJ -->
         <div class="mb-3">
             <label>Mesaj</label>
-            <textarea class="form-control" id="message" name="message"></textarea>
+            <textarea class="form-control" id="message" name="message" oninput="resetValidation()"></textarea>
         </div>
 
-        <!-- BUTON 1: NATIVE JS -->
         <button type="button" class="btn btn-primary w-100 mb-2" onclick="validateNative()">
             JS Doğrula
         </button>
 
-        <!-- BUTON 2: "FRAMEWORK" (SIMULATED) -->
         <button type="button" class="btn btn-warning w-100" onclick="validateVueLike()">
             Framework Doğrula
         </button>
 
-        <!-- GÖNDER BUTONU (PHP İÇİN) -->
-        <button type="submit" class="btn btn-success w-100 mt-2">
+        <button type="submit" id="submitBtn" class="btn btn-success w-100 mt-2" disabled>
             Gönder (PHP)
         </button>
 
@@ -119,47 +108,74 @@
 </div>
 
 <script>
+
+// GLOBAL DURUM
+let nativeOK = false;
+let frameworkOK = false;
+
+// FORM DEĞİŞİNCE SIFIRLA
+function resetValidation() {
+    nativeOK = false;
+    frameworkOK = false;
+    document.getElementById("submitBtn").disabled = true;
+}
+
 // =======================
-// 1) NATIVE JS VALIDATION
+// 1) NATIVE JS
 // =======================
 function validateNative() {
 
-    let name = document.getElementById("name").value.trim();
+    let name = nameVal = document.getElementById("name").value.trim();
     let email = document.getElementById("email").value.trim();
     let phone = document.getElementById("phone").value.trim();
     let message = document.getElementById("message").value.trim();
     let subject = document.getElementById("subject").value;
     let agree = document.getElementById("agree").checked;
+    let contactType = document.querySelector('input[name="contactType"]:checked');
 
     let result = document.getElementById("result");
 
     if(!name || !email || !phone || !message || !subject) {
-        result.style.color = "red";
+        nativeOK = false;
         result.innerHTML = "❌ Tüm alanları doldur!";
+        result.style.color = "red";
         return;
     }
 
-    if(!email.includes("@")) {
-        result.innerHTML = "❌ Email hatalı!";
+    let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if(!emailPattern.test(email)) {
+        nativeOK = false;
+        result.innerHTML = "❌ Geçerli email gir!";
         return;
     }
 
     if(!/^[0-9]+$/.test(phone)) {
+        nativeOK = false;
         result.innerHTML = "❌ Telefon sadece rakam olmalı!";
         return;
     }
 
     if(!agree) {
+        nativeOK = false;
         result.innerHTML = "❌ KVKK onayla!";
         return;
     }
 
-    result.style.color = "green";
+    if(!contactType) {
+        nativeOK = false;
+        result.innerHTML = "❌ İletişim tercihi seç!";
+        return;
+    }
+
+    nativeOK = true;
     result.innerHTML = "✅ Native JS: Başarılı!";
+    result.style.color = "green";
+
+    checkSubmit();
 }
 
 // =======================
-// 2) FRAMEWORK SIMULATION
+// 2) FRAMEWORK TARZI
 // =======================
 function validateVueLike() {
 
@@ -172,17 +188,36 @@ function validateVueLike() {
         agree: document.getElementById("agree").checked
     };
 
+    let contactType = document.querySelector('input[name="contactType"]:checked');
     let result = document.getElementById("result");
 
-    if(Object.values(form).includes("") || !form.agree) {
+    if(Object.values(form).includes("") || !form.agree || !contactType) {
+        frameworkOK = false;
         result.innerHTML = "❌ Framework: Eksik veri!";
         result.style.color = "red";
         return;
     }
 
+    frameworkOK = true;
     result.innerHTML = "✅ Framework: Başarılı!";
     result.style.color = "green";
+
+    checkSubmit();
 }
+
+// =======================
+// SUBMIT KONTROL
+// =======================
+function checkSubmit() {
+    let btn = document.getElementById("submitBtn");
+
+    if(nativeOK && frameworkOK) {
+        btn.disabled = false;
+    } else {
+        btn.disabled = true;
+    }
+}
+
 </script>
 
 <!-- FOOTER -->

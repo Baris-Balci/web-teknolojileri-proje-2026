@@ -40,7 +40,7 @@ if ($email == $correctEmail && $password == $correctPassword) {
 
 } else {
 
-    header("Location: login.html");
+    header("Location: login.html?error=1");
     exit();
 }
 

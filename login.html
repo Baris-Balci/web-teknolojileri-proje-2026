@@ -104,6 +104,19 @@ function validateLogin() {
 
     return true; // PHP'ye gönder
 }
+
+window.onload = function() {
+
+    const params = new URLSearchParams(window.location.search);
+    let msg = document.getElementById("msg");
+
+    if(params.get("error")) {
+        msg.style.color = "red";
+        msg.innerHTML = "❌ Email veya şifre hatalı!";
+    }
+
+};
+
 </script>
 
 <!-- FOOTER -->

@@ -1,14 +1,18 @@
 <?php
-// Form sadece POST ile geldiyse çalışsın
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    // Verileri al ve temizle
-    $name = trim($_POST["name"] ?? "");
-    $email = trim($_POST["email"] ?? "");
-    $phone = trim($_POST["phone"] ?? "");
-    $subject = trim($_POST["subject"] ?? "");
-    $message = trim($_POST["message"] ?? "");
-    $contactType = $_POST["contactType"] ?? "";
+    // Güvenli veri alma (XSS koruma)
+    function temizle($veri) {
+        return htmlspecialchars(trim($veri));
+    }
+
+    $name = temizle($_POST["name"] ?? "");
+    $email = temizle($_POST["email"] ?? "");
+    $phone = temizle($_POST["phone"] ?? "");
+    $subject = temizle($_POST["subject"] ?? "");
+    $message = temizle($_POST["message"] ?? "");
+    $contactType = temizle($_POST["contactType"] ?? "");
+    $agree = $_POST["agree"] ?? "";
 
     echo "<!DOCTYPE html>
     <html lang='tr'>
@@ -16,31 +20,53 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <meta charset='UTF-8'>
         <title>Form Sonucu</title>
         <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css' rel='stylesheet'>
+        <link rel='stylesheet' href='css/style.css'>
     </head>
-    <body class='bg-light'>";
+
+    <body class='bg-dark text-light'>";
 
     echo "<div class='container mt-5'>";
-    echo "<div class='card shadow p-4'>";
+    echo "<div class='box'>";
 
-    echo "<h2 class='mb-4 text-primary'>📩 Gönderilen Form Bilgileri</h2>";
+    echo "<h2 class='mb-4 text-info'>📩 Gönderilen Form Bilgileri</h2>";
 
-    // Boş kontrol
+    // BOŞ KONTROL
     if ($name == "" || $email == "" || $phone == "" || $subject == "" || $message == "") {
         echo "<div class='alert alert-danger'>❌ Lütfen tüm alanları doldurun!</div>";
+        echo "<a href='iletisim.html' class='btn btn-light mt-3'>Geri Dön</a>";
         exit;
     }
 
-    // Email kontrol
+    // EMAIL KONTROL
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         echo "<div class='alert alert-danger'>❌ Geçersiz email formatı!</div>";
+        echo "<a href='iletisim.html' class='btn btn-light mt-3'>Geri Dön</a>";
         exit;
     }
 
-    // Telefon kontrol
+    // TELEFON
     if (!preg_match('/^[0-9]+$/', $phone)) {
         echo "<div class='alert alert-danger'>❌ Telefon sadece rakam olmalıdır!</div>";
+        echo "<a href='iletisim.html' class='btn btn-light mt-3'>Geri Dön</a>";
         exit;
     }
+
+    // RADIO
+    if ($contactType == "") {
+        echo "<div class='alert alert-danger'>❌ İletişim tercihi seçilmedi!</div>";
+        echo "<a href='iletisim.html' class='btn btn-light mt-3'>Geri Dön</a>";
+        exit;
+    }
+
+    // CHECKBOX
+    if (!$agree) {
+        echo "<div class='alert alert-danger'>❌ KVKK onayı gerekli!</div>";
+        echo "<a href='iletisim.html' class='btn btn-light mt-3'>Geri Dön</a>";
+        exit;
+    }
+
+    // BAŞARILI
+    echo "<div class='alert alert-success'>✅ Form başarıyla gönderildi!</div>";
 
     echo "<ul class='list-group'>";
 
@@ -60,7 +86,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo "</body></html>";
 
 } else {
-    // direkt giriş yapılırsa
     header("Location: iletisim.html");
     exit;
 }
